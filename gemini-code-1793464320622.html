@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thomas | Engineering E-Portfolio – ENSEEIHT</title>
+  <meta name="description" content="Personal e-portfolio of Thomas, Fluid Mechanics, Energy and Environment (MF2E) engineering student at ENSEEIHT (Toulouse INP).">
+  
+  <!-- =========================================================================
+       COMMENT MODIFIER CE FICHIER / HOW TO EDIT THIS FILE
+       =========================================================================
+       1. PHOTO DE PROFIL :
+          Placez votre photo dans le même dossier que ce fichier index.html et
+          nommez-la "photo.jpg", ou modifiez l'attribut src="photo.jpg" dans la
+          balise <img id="profile-photo"> (cherchez "id="profile-photo"").
+       
+       2. LIENS (CV, LinkedIn, Email, Vidéo Pitch) :
+          Cherchez les commentaires "<!-- TODO: LINK -->" dans le code HTML pour
+          remplacer les "#" par vos vrais liens (ex: href="CV_Thomas_EN.pdf").
+          Pour la vidéo : remplacez src="pitch.mp4" ou intégrez un iframe YouTube.
+       
+       3. TEXTES BILINGUES (FR / EN) & CASES "À COMPLÉTER" :
+          Tout le texte du site est stocké dans l'objet JavaScript `translations`
+          situé en bas de ce fichier (dans la balise <script>).
+          Cherchez "À compléter" ou "To complete" dans le script pour remplir
+          vos informations (dates, clubs, projets, TIPE, Role Models, STAR).
+          
+       4. STYLE DES CASES À COMPLÉTER :
+          Une fois qu'une case est remplie par vos soins, vous pouvez retirer la
+          classe CSS "todo-box" ou "todo-inline" de l'élément HTML correspondant
+          pour supprimer la bordure en pointillés.
+       ========================================================================= -->
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================================
+       CSS VARIABLES & THEME (LIGHT / DARK AUTO)
+       ========================================================================= */
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-accent: #eff6ff;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --navy: #0a192f;
+      --accent: #0284c7;
+      --accent-hover: #0369a1;
+      --accent-light: #38bdf8;
+      --border: #e2e8f0;
+      --todo-bg: #fffbeb;
+      --todo-border: #f59e0b;
+      --todo-text: #b45309;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+      --radius: 12px;
+      --transition: 0.25s ease;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary: #0b1120;
+        --bg-secondary: #1e293b;
+        --bg-accent: #172554;
+        --text-primary: #f1f5f9;
+        --text-secondary: #94a3b8;
+        --navy: #020617;
+        --accent: #38bdf8;
+        --accent-hover: #7dd3fc;
+        --accent-light: #0284c7;
+        --border: #334155;
+        --todo-bg: rgba(245, 158, 11, 0.12);
+        --todo-border: #f59e0b;
+        --todo-text: #fbbf24;
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    /* =========================================================================
+       BASE & RESET
+       ========================================================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+    }
+
+    /* =========================================================================
+       HEADER & NAVIGATION
+       ========================================================================= */
+    header {
+      background-color: var(--navy);
+      color: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-md);
+    }
+
+    .header-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+
+    .brand-sub {
+      font-size: 0.78rem;
+      color: #94a3b8;
+    }
+
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    nav a.tab-link {
+      display: inline-block;
+      padding: 0.45rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #cbd5e1;
+      transition: all var(--transition);
+    }
+
+    nav a.tab-link:hover {
+      color: #ffffff;
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    nav a.tab-link.active {
+      background-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    @media (prefers-color-scheme: light) {
+      nav a.tab-link.active {
+        color: #ffffff;
+      }
+    }
+
+    .lang-switch {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .lang-switch:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* =========================================================================
+       MAIN LAYOUT & TAB SECTIONS
+       ========================================================================= */
+    main {
+      flex: 1;
+      max-width: 1140px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+    }
+
+    .tab-section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .subsection-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 2.25rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    /* =========================================================================
+       CARDS, GRIDS & PLACEHOLDERS ("À COMPLÉTER")
+       ========================================================================= */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .grid-2 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Style pointillé obligatoire pour les zones "À compléter / To complete" */
+    .todo-box {
+      border: 2px dashed var(--todo-border);
+      background-color: var(--todo-bg);
+      color: var(--todo-text);
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .todo-inline {
+      border: 1.5px dashed var(--todo-border);
+      background-color: var(--todo-bg);
+      color: var(--todo-text);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: inline-block;
+    }
+
+    /* =========================================================================
+       1. WELCOME TAB
+       ========================================================================= */
+    .hero-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.75rem;
+      padding: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero-card {
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
+      }
+    }
+
+    .photo-wrapper {
+      flex-shrink: 0;
+      text-align: center;
+    }
+
+    .profile-photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      background-color: var(--bg-accent);
+      display: block;
+      margin: 0 auto 0.5rem;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+      justify-content: center;
+    }
+
+    @media (min-width: 768px) {
+      .badges { justify-content: flex-start; }
+    }
+
+    .badge {
+      background-color: var(--bg-accent);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .uvp-quote {
+      background-color: var(--bg-accent);
+      border-left: 4px solid var(--accent);
+      padding: 1.1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin: 1.25rem 0;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all var(--transition);
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      color: #ffffff;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border-color: var(--border);
+      color: var(--text-primary);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* =========================================================================
+       2. ENGINEERING COURSE (TIMELINE & SUB-TABS)
+       ========================================================================= */
+    .timeline {
+      position: relative;
+      padding-left: 1.75rem;
+      border-left: 3px solid var(--accent);
+      margin: 1.5rem 0 2.5rem 0.75rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.75rem;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2.3rem;
+      top: 0.25rem;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      border: 3px solid var(--bg-primary);
+    }
+
+    .subtab-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+    }
+
+    .subtab-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 0.5rem 1.1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .subtab-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .subtab-panel {
+      display: none;
+    }
+
+    .subtab-panel.active {
+      display: block;
+    }
+
+    .field-list {
+      list-style: none;
+      margin-top: 0.75rem;
+    }
+
+    .field-list li {
+      margin-bottom: 0.65rem;
+      font-size: 0.9rem;
+    }
+
+    .field-label {
+      font-weight: 600;
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    /* =========================================================================
+       3. INTERNATIONAL MOBILITY (LANGUAGE BARS)
+       ========================================================================= */
+    .lang-item {
+      margin-bottom: 1rem;
+    }
+
+    .lang-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .progress-bg {
+      width: 100%;
+      height: 10px;
+      background-color: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: var(--accent);
+      border-radius: 999px;
+    }
+
+    /* =========================================================================
+       6. CAREER DEVELOPMENT (STAR & VIDEO)
+       ========================================================================= */
+    .star-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .star-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .video-placeholder {
+      width: 100%;
+      max-width: 640px;
+      margin-top: 1rem;
+      background: #000;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 2px dashed var(--todo-border);
+    }
+
+    video {
+      width: 100%;
+      display: block;
+    }
+
+    /* =========================================================================
+       FOOTER
+       ========================================================================= */
+    footer {
+      background-color: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================================
+       HEADER & SINGLE-PAGE NAVIGATION
+       ========================================================================= -->
+  <header>
+    <div class="header-container">
+      <div class="brand">
+        <span class="brand-name">Thomas</span>
+        <span class="brand-sub" data-i18n="header_sub">ENSEEIHT (Toulouse INP) – MF2E Engineering Student</span>
+      </div>
+      <div class="nav-wrapper">
+        <nav aria-label="Main Navigation">
+          <ul>
+            <li><a href="#welcome" class="tab-link active" data-tab="welcome" data-i18n="nav_welcome">Welcome</a></li>
+            <li><a href="#engineering" class="tab-link" data-tab="engineering" data-i18n="nav_engineering">Engineering Course</a></li>
+            <li><a href="#mobility" class="tab-link" data-tab="mobility" data-i18n="nav_mobility">International Mobility</a></li>
+            <li><a href="#sustainability" class="tab-link" data-tab="sustainability" data-i18n="nav_sustainability">Sustainability & Civic</a></li>
+            <li><a href="#sport" class="tab-link" data-tab="sport" data-i18n="nav_sport">Sport & Activities</a></li>
+            <li><a href="#career" class="tab-link" data-tab="career" data-i18n="nav_career">Career Development</a></li>
+          </ul>
+        </nav>
+        <button id="lang-toggle" class="lang-switch" type="button" aria-label="Switch Language">EN | FR</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- =======================================================================
+         TAB 1: WELCOME
+         ======================================================================= -->
+    <section id="welcome" class="tab-section active" aria-labelledby="title-welcome">
+      <div class="card hero-card">
+        <div class="photo-wrapper">
+          <!-- TODO: Remplacez photo.jpg par votre vraie photo dans le même dossier -->
+          <img id="profile-photo" src="photo.jpg" alt="Portrait of Thomas, ENSEEIHT engineering student" class="profile-photo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22 viewBox=%220 0 160 160%22><rect width=%22160%22 height=%22160%22 fill=%22%230a192f%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%2338bdf8%22 font-family=%22sans-serif%22 font-size=%2214%22 text-anchor=%22middle%22 dy=%22.3em%22>photo.jpg</text></svg>'">
+          <span class="todo-inline" data-i18n="welcome_photo_todo">Photo: À compléter / To complete (photo.jpg)</span>
+        </div>
+
+        <div>
+          <h1 id="title-welcome" class="section-title" data-i18n="welcome_title">Hello, I'm Thomas</h1>
+          <p data-i18n="welcome_intro">
+            I am an engineering student at ENSEEIHT (Toulouse INP) in the Fluid Mechanics, Energy and Environment (MF2E) department in Toulouse. After completing an intensive preparatory class (PTSI then PT*), I am building technical expertise aimed at the aeronautics and energy sectors.
+          </p>
+
+          <!-- 3 mots en badges -->
+          <div class="badges" aria-label="Key personal traits">
+            <span class="badge" data-i18n="badge_1">Curious</span>
+            <span class="badge" data-i18n="badge_2">Rigorous</span>
+            <span class="badge" data-i18n="badge_3">Team Spirit</span>
+          </div>
+
+          <!-- UVP en citation mise en avant -->
+          <blockquote class="uvp-quote" data-i18n="welcome_uvp">
+            "A future engineer in fluid mechanics and energy, passionate about aeronautics, combining scientific rigor, international openness, and a strong team spirit forged through collective sports."
+          </blockquote>
+
+          <!-- Liens rapides (LinkedIn, CV, Email) -->
+          <div class="btn-group">
+            <!-- TODO: LINK LinkedIn -->
+            <a href="#" class="btn btn-primary todo-inline" data-i18n="welcome_btn_linkedin">LinkedIn: À compléter / To complete</a>
+            <!-- TODO: LINK CV -->
+            <a href="#" class="btn btn-outline todo-inline" data-i18n="welcome_btn_cv">CV: À compléter / To complete</a>
+            <!-- TODO: LINK Email -->
+            <a href="mailto:prenom.nom@etu.toulouse-inp.fr" class="btn btn-outline todo-inline" data-i18n="welcome_btn_email">Email: À compléter / To complete</a>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="subsection-title" data-i18n="welcome_explore_title">Explore My E-Portfolio</h2>
+      <div class="btn-group">
+        <a href="#engineering" class="btn btn-outline" data-tab-jump="engineering" data-i18n="nav_engineering">Engineering Course</a>
+        <a href="#mobility" class="btn btn-outline" data-tab-jump="mobility" data-i18n="nav_mobility">International Mobility</a>
+        <a href="#sustainability" class="btn btn-outline" data-tab-jump="sustainability" data-i18n="nav_sustainability">Sustainability & Civic</a>
+        <a href="#sport" class="btn btn-outline" data-tab-jump="sport" data-i18n="nav_sport">Sport & Activities</a>
+        <a href="#career" class="btn btn-primary" data-tab-jump="career" data-i18n="nav_career">Career Development</a>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         TAB 2: ENGINEERING COURSE
+         ======================================================================= -->
+    <section id="engineering" class="tab-section" aria-labelledby="title-engineering">
+      <h1 id="title-engineering" class="section-title" data-i18n="eng_title">Engineering Course</h1>
+      <p class="section-subtitle" data-i18n="eng_subtitle">My academic path from preparatory classes to ENSEEIHT (Toulouse INP).</p>
+
+      <!-- Frise chronologique : PTSI -> PT* -> ENSEEIHT MF2E -->
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h3 data-i18n="eng_step3_title">ENSEEIHT (Toulouse INP) – MF2E Department (Toulouse)</h3>
+          <p data-i18n="eng_step3_desc">Engineering degree in Fluid Mechanics, Energy and Environment. Core subjects: fluid dynamics, thermodynamics, numerical simulation, heat transfer, and energetics.</p>
+          <div class="todo-box" data-i18n="eng_step3_todo">Dates & spécialisation : À compléter / To complete</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h3 data-i18n="eng_step2_title">Preparatory Class – PT* (Physics & Technology, Star Track)</h3>
+          <p data-i18n="eng_step2_desc">Second year of intensive preparation for competitive entrance exams to French national engineering schools.</p>
+          <div class="todo-box" data-i18n="eng_step2_todo">Lycée, ville & année : À compléter / To complete</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h3 data-i18n="eng_step1_title">Preparatory Class – PTSI (Physics, Technology and Engineering Sciences)</h3>
+          <p data-i18n="eng_step1_desc">First year of higher scientific study focused on mathematics, physics, mechanics, and industrial engineering sciences.</p>
+          <div class="todo-box" data-i18n="eng_step1_todo">Lycée, ville & année : À compléter / To complete</div>
+        </div>
+      </div>
+
+      <!-- Emplacement TIPE -->
+      <div class="card" style="margin-bottom: 2rem;">
+        <h3 data-i18n="eng_tipe_title">TIPE – Supervised Personal Initiative Work (PTSI / PT*)</h3>
+        <p data-i18n="eng_tipe_desc">Scientific research and experimental project carried out during preparatory classes.</p>
+        <div class="todo-box" data-i18n="eng_tipe_todo">
+          À compléter / To complete : Titre du TIPE, problématique, expériences/modélisations réalisées et résultats obtenus.
+        </div>
+      </div>
+
+      <!-- Sous-onglets : Projets | Compétences -->
+      <div class="subtab-bar" role="tablist">
+        <button class="subtab-btn active" type="button" data-subtab="projects" data-i18n="eng_subtab_projects">Projects</button>
+        <button class="subtab-btn" type="button" data-subtab="skills" data-i18n="eng_subtab_skills">Skills</button>
+      </div>
+
+      <!-- Sous-onglet 1 : Projets (Cartes modèles vides) -->
+      <div id="subtab-projects" class="subtab-panel active">
+        <div class="grid-2">
+          <div class="card">
+            <h3 data-i18n="proj1_title">Engineering Project #1</h3>
+            <ul class="field-list">
+              <li><span class="field-label" data-i18n="proj_lbl_context">Context:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+              <li><span class="field-label" data-i18n="proj_lbl_role">My Role:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+              <li><span class="field-label" data-i18n="proj_lbl_tools">Tools Used:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+              <li><span class="field-label" data-i18n="proj_lbl_result">Result:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+              <li><span class="field-label" data-i18n="proj_lbl_learned">What I Learned:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3 data-i18n="proj2_title">Engineering Project #2</h3>
+            <ul class="field-list">
+              <li><span class="field-label" data-i18n="proj_lbl_context">Context:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+              <li><span class="field-label" data-i18n="proj_lbl_role">My Role:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+              <li><span class="field-label" data-i18n="proj_lbl_tools">Tools Used:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+              <li><span class="field-label" data-i18n="proj_lbl_result">Result:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+              <li><span class="field-label" data-i18n="proj_lbl_learned">What I Learned:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sous-onglet 2 : Compétences (Cases à compléter) -->
+      <div id="subtab-skills" class="subtab-panel">
+        <div class="grid-3">
+          <div class="card">
+            <h3 data-i18n="skill_cat1">Scientific & MF2E Core</h3>
+            <div class="todo-box" data-i18n="skill_cat1_todo">À compléter / To complete (ex: mécanique des fluides, thermodynamique, aérodynamique, transferts thermiques)</div>
+          </div>
+          <div class="card">
+            <h3 data-i18n="skill_cat2">Software, Simulation & Programming</h3>
+            <div class="todo-box" data-i18n="skill_cat2_todo">À compléter / To complete (ex: Python, MATLAB, CAO/CAD, outils CFD utilisés en cours)</div>
+          </div>
+          <div class="card">
+            <h3 data-i18n="skill_cat3">Soft Skills & Methodology</h3>
+            <div class="todo-box" data-i18n="skill_cat3_todo">À compléter / To complete (ex: travail en équipe, rigueur scientifique, gestion de projet)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         TAB 3: INTERNATIONAL MOBILITY
+         ======================================================================= -->
+    <section id="mobility" class="tab-section" aria-labelledby="title-mobility">
+      <h1 id="title-mobility" class="section-title" data-i18n="mob_title">International Mobility</h1>
+      <p class="section-subtitle" data-i18n="mob_subtitle">Languages, cultural experiences abroad, and target destinations for my engineering mobility.</p>
+
+      <div class="grid-2">
+        <!-- Langues avec barres de niveau -->
+        <div class="card">
+          <h3 data-i18n="mob_lang_title">Languages</h3>
+          
+          <div class="lang-item">
+            <div class="lang-header">
+              <span data-i18n="lang_fr">French</span>
+              <span data-i18n="lang_fr_lvl">Native</span>
+            </div>
+            <div class="progress-bg"><div class="progress-fill" style="width: 100%;"></div></div>
+          </div>
+
+          <div class="lang-item">
+            <div class="lang-header">
+              <span data-i18n="lang_en">English</span>
+              <span data-i18n="lang_en_lvl">Good Level</span>
+            </div>
+            <div class="progress-bg"><div class="progress-fill" style="width: 80%;"></div></div>
+            <div class="todo-box" data-i18n="lang_en_todo">Score certifié (TOEIC / Cambridge) : À compléter / To complete</div>
+          </div>
+
+          <div class="lang-item">
+            <div class="lang-header">
+              <span data-i18n="lang_es">Spanish</span>
+              <span data-i18n="lang_es_lvl">Intermediate Level</span>
+            </div>
+            <div class="progress-bg"><div class="progress-fill" style="width: 55%;"></div></div>
+          </div>
+        </div>
+
+        <!-- Voyages personnels -->
+        <div class="card">
+          <h3 data-i18n="mob_travels_title">Past International Travels</h3>
+          <p data-i18n="mob_travels_desc">
+            Traveling across <strong>Asia</strong> and <strong>North America</strong> allowed me to experience diverse cultures, practice English in real-life contexts, and strengthen my adaptability in unfamiliar environments.
+          </p>
+          <div class="todo-box" data-i18n="mob_travels_todo">
+            Pays visités précisément & dates : À compléter / To complete
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Projets de mobilité -->
+      <h2 class="subsection-title" data-i18n="mob_projects_title">My 3 Target Mobility Projects</h2>
+      <div class="grid-3">
+        <!-- Carte 1 : Canada -->
+        <div class="card">
+          <h3 data-i18n="mob_card1_title">1. Canada</h3>
+          <p data-i18n="mob_card1_desc">A major hub for the aerospace and energy industries, offering a bilingual and innovative environment.</p>
+          <ul class="field-list">
+            <li><span class="field-label" data-i18n="mob_lbl_type">Type of Mobility (Semester / Internship / Double Degree):</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="mob_lbl_rolemodel">Link with Corresponding Role Model:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+          </ul>
+        </div>
+
+        <!-- Carte 2 : Asie -->
+        <div class="card">
+          <h3 data-i18n="mob_card2_title">2. Asia</h3>
+          <p data-i18n="mob_card2_desc">Dynamic technological ecosystems with fast-growing aviation, engineering, and energy infrastructures.</p>
+          <ul class="field-list">
+            <li><span class="field-label" data-i18n="mob_lbl_type">Type of Mobility (Semester / Internship / Double Degree):</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="mob_lbl_rolemodel">Link with Corresponding Role Model:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+          </ul>
+        </div>
+
+        <!-- Carte 3 : Pays nordiques -->
+        <div class="card">
+          <h3 data-i18n="mob_card3_title">3. Nordic Countries</h3>
+          <p data-i18n="mob_card3_desc">Recognized leaders in sustainable energy transition, fluid mechanics research, and high environmental standards.</p>
+          <ul class="field-list">
+            <li><span class="field-label" data-i18n="mob_lbl_type">Type of Mobility (Semester / Internship / Double Degree):</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="mob_lbl_rolemodel">Link with Corresponding Role Model:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         TAB 4: SUSTAINABILITY & CIVIC ENGAGEMENT
+         ======================================================================= -->
+    <section id="sustainability" class="tab-section" aria-labelledby="title-sustainability">
+      <h1 id="title-sustainability" class="section-title" data-i18n="sust_title">Sustainability & Civic Engagement</h1>
+      <p class="section-subtitle" data-i18n="sust_subtitle">Acting locally for the environment and serving the public interest.</p>
+
+      <div class="grid-2">
+        <!-- Clean Walk -->
+        <div class="card">
+          <h3 data-i18n="sust_cw_title">Environmental Action – Clean Walk</h3>
+          <p data-i18n="sust_cw_text">
+            I took part in a collective Clean Walk to collect litter and reduce local pollution in public spaces. This hands-on initiative raised awareness among participants and passersby about waste management and everyday environmental responsibility. As an MF2E student, connecting my environmental studies with concrete field action is essential to me.
+          </p>
+          <div class="todo-box" data-i18n="sust_cw_todo">
+            À compléter / To complete : Date, lieu exact, organisation et nombre de participants.
+          </div>
+        </div>
+
+        <!-- Expérience en mairie (Engagement citoyen) -->
+        <div class="card">
+          <h3 data-i18n="sust_mairie_title">Civic Engagement – Working at a Local Town Hall (Mairie)</h3>
+          <p data-i18n="sust_mairie_text">
+            Working for a municipal administration allowed me to contribute directly to daily public service and local community life. This experience gave me a concrete understanding of how local institutions operate, how collective infrastructure is maintained, and why reliability and clear communication matter when serving citizens.
+          </p>
+          <div class="todo-box" data-i18n="sust_mairie_todo">
+            À compléter / To complete : Commune, service précis, période et missions principales.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         TAB 5: SPORT & OTHER ACTIVITIES
+         ======================================================================= -->
+    <section id="sport" class="tab-section" aria-labelledby="title-sport">
+      <h1 id="title-sport" class="section-title" data-i18n="sport_title">Sport & Other Activities</h1>
+      <p class="section-subtitle" data-i18n="sport_subtitle">Building team spirit, discipline, and cultural curiosity outside the classroom.</p>
+
+      <div class="grid-3">
+        <!-- Volleyball -->
+        <div class="card">
+          <h3 data-i18n="sport_volley_title">Volleyball</h3>
+          <p data-i18n="sport_volley_desc">
+            A fast-paced sport where no player can win alone: every point relies on instant communication, trust between teammates, and quick collective adaptation.
+          </p>
+          <div class="todo-box" data-i18n="sport_volley_todo">
+            Niveau & Club (ex: AS ENSEEIHT / club local) : À compléter / To complete
+          </div>
+        </div>
+
+        <!-- Football -->
+        <div class="card">
+          <h3 data-i18n="sport_foot_title">Football</h3>
+          <p data-i18n="sport_foot_desc">
+            Practicing football taught me endurance, tactical discipline, and how to combine individual effort with a shared collective strategy under pressure.
+          </p>
+          <div class="todo-box" data-i18n="sport_foot_todo">
+            Niveau & Club : À compléter / To complete
+          </div>
+        </div>
+
+        <!-- Cinéma -->
+        <div class="card">
+          <h3 data-i18n="sport_cinema_title">Cinema</h3>
+          <p data-i18n="sport_cinema_desc">
+            Beyond sports, I have a strong interest in cinema, which feeds my curiosity for storytelling, visual aesthetics, and diverse cultural perspectives.
+          </p>
+          <div class="todo-box" data-i18n="sport_cinema_todo">
+            Genres / Réalisateurs ou implication associative : À compléter / To complete
+          </div>
+        </div>
+      </div>
+
+      <!-- Compétences transférables -->
+      <div class="card" style="margin-top: 1.5rem;">
+        <h3 data-i18n="sport_transfer_title">Transferable Skills for Engineering</h3>
+        <p data-i18n="sport_transfer_text">
+          Collective sports directly shape how I work in engineering project teams. They have taught me <strong>team spirit</strong> (supporting teammates and sharing responsibility), <strong>discipline</strong> (regular training and rigor in execution), and <strong>clear communication</strong> (listening and sharing concise information when solving complex problems).
+        </p>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         TAB 6: CAREER DEVELOPMENT (4 SUB-SECTIONS)
+         ======================================================================= -->
+    <section id="career" class="tab-section" aria-labelledby="title-career">
+      <h1 id="title-career" class="section-title" data-i18n="car_title">Career Development</h1>
+      <p class="section-subtitle" data-i18n="car_subtitle">My professional ambition in aeronautics, inspiring role models, field experience, and key career documents.</p>
+
+      <!-- 6.1 Career Project -->
+      <h2 class="subsection-title" data-i18n="car_proj_title">1. Career Project</h2>
+      <div class="card">
+        <p data-i18n="car_proj_p1">
+          Studying in the MF2E department at ENSEEIHT in Toulouse—at the heart of Europe's aerospace valley—naturally aligns with my passion for the <strong>aeronautics sector</strong>. Today, aviation faces a major technological challenge: improving aircraft performance while drastically reducing energy consumption and environmental impact.
+        </p>
+        <p data-i18n="car_proj_p2">
+          My goal is to apply fluid mechanics, thermodynamics, and numerical modeling to contribute to cleaner and more efficient flight technologies. Target roles I am exploring include:
+        </p>
+        <div class="badges">
+          <span class="badge" data-i18n="car_role_1">Aerodynamics Engineer</span>
+          <span class="badge" data-i18n="car_role_2">CFD / Numerical Simulation Engineer</span>
+          <span class="badge" data-i18n="car_role_3">Propulsion & Turbomachinery Engineer</span>
+          <span class="badge" data-i18n="car_role_4">Aircraft Thermal & Energy Systems Engineer</span>
+        </div>
+      </div>
+
+      <!-- 6.2 3 Role Models -->
+      <h2 class="subsection-title" data-i18n="car_rm_title">2. Three Inspiring Role Models</h2>
+      <div class="grid-3">
+        <!-- Role Model 1 -->
+        <div class="card">
+          <h3 data-i18n="rm1_title">Role Model #1</h3>
+          <ul class="field-list">
+            <li><span class="field-label" data-i18n="rm_lbl_name">Name & Position:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_company">Company:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_path">Background / Career Path:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_why">Why They Inspire Me:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_skills">Key Skills:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_source">Source (MyJobGlasses / Alumni Interview):</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_mob">Link with My Mobility (Canada / Asia / Nordics):</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+          </ul>
+        </div>
+
+        <!-- Role Model 2 -->
+        <div class="card">
+          <h3 data-i18n="rm2_title">Role Model #2</h3>
+          <ul class="field-list">
+            <li><span class="field-label" data-i18n="rm_lbl_name">Name & Position:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_company">Company:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_path">Background / Career Path:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_why">Why They Inspire Me:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_skills">Key Skills:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_source">Source (MyJobGlasses / Alumni Interview):</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_mob">Link with My Mobility (Canada / Asia / Nordics):</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+          </ul>
+        </div>
+
+        <!-- Role Model 3 -->
+        <div class="card">
+          <h3 data-i18n="rm3_title">Role Model #3</h3>
+          <ul class="field-list">
+            <li><span class="field-label" data-i18n="rm_lbl_name">Name & Position:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_company">Company:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_path">Background / Career Path:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_why">Why They Inspire Me:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_skills">Key Skills:</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_source">Source (MyJobGlasses / Alumni Interview):</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+            <li><span class="field-label" data-i18n="rm_lbl_mob">Link with My Mobility (Canada / Asia / Nordics):</span> <span class="todo-inline" data-i18n="todo_short">À compléter / To complete</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 6.3 Experience (STAR Method - Town Hall / Mairie) -->
+      <h2 class="subsection-title" data-i18n="car_exp_title">3. Professional Experience – STAR Breakdown (Town Hall / Mairie)</h2>
+      <div class="star-grid">
+        <div class="card">
+          <h3 data-i18n="star_s_title">S – Situation</h3>
+          <p data-i18n="star_s_desc">Employment within a local municipal administration (Mairie) supporting public services and local operations.</p>
+          <div class="todo-box" data-i18n="star_s_todo">À compléter / To complete : Lieu, dates, service et contexte précis de l'équipe.</div>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="star_t_title">T – Task</h3>
+          <p data-i18n="star_t_desc">Objectives and responsibilities assigned to me during this contract.</p>
+          <div class="todo-box" data-i18n="star_t_todo">À compléter / To complete : Vos objectifs précis et les attentes de votre responsable.</div>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="star_a_title">A – Action</h3>
+          <p data-i18n="star_a_desc">Concrete actions I implemented daily, working with colleagues and local residents.</p>
+          <div class="todo-box" data-i18n="star_a_todo">À compléter / To complete : Ce que vous avez fait concrètement, comment vous avez résolu les imprévus.</div>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="star_r_title">R – Result</h3>
+          <p data-i18n="star_r_desc">Outcomes of my work for the municipality and citizens.</p>
+          <div class="todo-box" data-i18n="star_r_todo">À compléter / To complete : Résultats obtenus, retours de l'équipe ou des usagers.</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 1rem;">
+        <h3 data-i18n="star_next_title">And Next? (What I Take Away for Engineering)</h3>
+        <p data-i18n="star_next_desc">How this field experience prepared me for future engineering internships in the aeronautics industry.</p>
+        <div class="todo-box" data-i18n="star_next_todo">À compléter / To complete : Compétences professionnelles acquises (autonomie, ponctualité, communication terrain) et suite de votre parcours.</div>
+      </div>
+
+      <!-- 6.4 Documents & Elevator Pitch -->
+      <h2 class="subsection-title" data-i18n="car_doc_title">4. Career Documents & Elevator Pitch</h2>
+      <div class="card">
+        <p data-i18n="car_doc_desc">Access my resumes, LinkedIn profiles, and my 2–3 minute Elevator Pitch video in English.</p>
+        
+        <div class="btn-group">
+          <!-- TODO: LINK CV EN -->
+          <a href="#" class="btn btn-primary todo-inline" data-i18n="doc_cv_en">CV (English) – À compléter / To complete</a>
+          <!-- TODO: LINK CV FR -->
+          <a href="#" class="btn btn-primary todo-inline" data-i18n="doc_cv_fr">CV (Français) – À compléter / To complete</a>
+          <!-- TODO: LINK LinkedIn EN -->
+          <a href="#" class="btn btn-outline todo-inline" data-i18n="doc_li_en">LinkedIn (English) – À compléter / To complete</a>
+          <!-- TODO: LINK LinkedIn FR -->
+          <a href="#" class="btn btn-outline todo-inline" data-i18n="doc_li_fr">LinkedIn (Français) – À compléter / To complete</a>
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <h3 data-i18n="doc_pitch_title">Elevator Pitch (UVP) – 2-3 min in English</h3>
+          <div class="todo-box" data-i18n="doc_pitch_todo">
+            Vidéo Pitch (2-3 min en anglais) : À compléter / To complete (remplacez src="pitch.mp4" ou insérez votre lien vidéo).
+          </div>
+          <div class="video-placeholder">
+            <!-- TODO: LINK VIDEO -->
+            <video controls preload="metadata">
+              <source src="pitch.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p data-i18n="footer_text">© Thomas – ENSEEIHT (Toulouse INP) MF2E | Careers & Management – Marketing E-Portfolio</p>
+  </footer>
+
+  <!-- =========================================================================
+       JAVASCRIPT: BILINGUAL TRANSLATIONS (EN DEFAULT / FR) & TAB ROUTING
+       ========================================================================= -->
+  <script>
+    const translations = {
+      en: {
+        header_sub: "ENSEEIHT (Toulouse INP) – MF2E Engineering Student",
+        nav_welcome: "Welcome",
+        nav_engineering: "Engineering Course",
+        nav_mobility: "International Mobility",
+        nav_sustainability: "Sustainability & Civic",
+        nav_sport: "Sport & Activities",
+        nav_career: "Career Development",
+        todo_short: "To complete / À compléter",
+
+        // 1. Welcome
+        welcome_photo_todo: "Photo: To complete / À compléter (photo.jpg)",
+        welcome_title: "Hello, I'm Thomas",
+        welcome_intro: "I am an engineering student at ENSEEIHT (Toulouse INP) in the Fluid Mechanics, Energy and Environment (MF2E) department in Toulouse. After completing an intensive preparatory class (PTSI then PT*), I am building technical expertise aimed at the aeronautics and energy sectors.",
+        badge_1: "Curious",
+        badge_2: "Rigorous",
+        badge_3: "Team Spirit",
+        welcome_uvp: "\"A future engineer in fluid mechanics and energy, passionate about aeronautics, combining scientific rigor, international openness, and a strong team spirit forged through collective sports.\"",
+        welcome_btn_linkedin: "LinkedIn: To complete / À compléter",
+        welcome_btn_cv: "CV: To complete / À compléter",
+        welcome_btn_email: "Email: To complete / À compléter",
+        welcome_explore_title: "Explore My E-Portfolio",
+
+        // 2. Engineering Course
+        eng_title: "Engineering Course",
+        eng_subtitle: "My academic path from preparatory classes to ENSEEIHT (Toulouse INP).",
+        eng_step3_title: "ENSEEIHT (Toulouse INP) – MF2E Department (Toulouse)",
+        eng_step3_desc: "Engineering degree in Fluid Mechanics, Energy and Environment. Core subjects: fluid dynamics, thermodynamics, numerical simulation, heat transfer, and energetics.",
+        eng_step3_todo: "Dates & specialization details: To complete / À compléter",
+        eng_step2_title: "Preparatory Class – PT* (Physics & Technology, Star Track)",
+        eng_step2_desc: "Second year of intensive preparation for competitive entrance exams to French national engineering schools.",
+        eng_step2_todo: "High school name, city & dates: To complete / À compléter",
+        eng_step1_title: "Preparatory Class – PTSI (Physics, Technology and Engineering Sciences)",
+        eng_step1_desc: "First year of higher scientific study focused on mathematics, physics, mechanics, and industrial engineering sciences.",
+        eng_step1_todo: "High school name, city & dates: To complete / À compléter",
+        eng_tipe_title: "TIPE – Supervised Personal Initiative Work (PTSI / PT*)",
+        eng_tipe_desc: "Scientific research and experimental project carried out during preparatory classes.",
+        eng_tipe_todo: "To complete / À compléter: TIPE title, research question, experiments/modeling performed, and key findings.",
+        eng_subtab_projects: "Projects",
+        eng_subtab_skills: "Skills",
+        proj1_title: "Engineering Project #1",
+        proj2_title: "Engineering Project #2",
+        proj_lbl_context: "Context:",
+        proj_lbl_role: "My Role:",
+        proj_lbl_tools: "Tools Used:",
+        proj_lbl_result: "Result:",
+        proj_lbl_learned: "What I Learned:",
+        skill_cat1: "Scientific & MF2E Core",
+        skill_cat1_todo: "To complete / À compléter (e.g., fluid mechanics, thermodynamics, aerodynamics, heat transfer)",
+        skill_cat2: "Software, Simulation & Programming",
+        skill_cat2_todo: "To complete / À compléter (e.g., Python, MATLAB, CAD, CFD tools used in class)",
+        skill_cat3: "Soft Skills & Methodology",
+        skill_cat3_todo: "To complete / À compléter (e.g., teamwork, scientific rigor, project management)",
+
+        // 3. International Mobility
+        mob_title: "International Mobility",
+        mob_subtitle: "Languages, cultural experiences abroad, and target destinations for my engineering mobility.",
+        mob_lang_title: "Languages",
+        lang_fr: "French",
+        lang_fr_lvl: "Native",
+        lang_en: "English",
+        lang_en_lvl: "Good Level",
+        lang_en_todo: "Official test score (TOEIC / Cambridge): To complete / À compléter",
+        lang_es: "Spanish",
+        lang_es_lvl: "Intermediate Level",
+        mob_travels_title: "Past International Travels",
+        mob_travels_desc: "Traveling across Asia and North America allowed me to experience diverse cultures, practice English in real-life contexts, and strengthen my adaptability in unfamiliar environments.",
+        mob_travels_todo: "Specific countries visited & dates: To complete / À compléter",
+        mob_projects_title: "My 3 Target Mobility Projects",
+        mob_card1_title: "1. Canada",
+        mob_card1_desc: "A major hub for the aerospace and energy industries, offering a bilingual and innovative environment.",
+        mob_card2_title: "2. Asia",
+        mob_card2_desc: "Dynamic technological ecosystems with fast-growing aviation, engineering, and energy infrastructures.",
+        mob_card3_title: "3. Nordic Countries",
+        mob_card3_desc: "Recognized leaders in sustainable energy transition, fluid mechanics research, and high environmental standards.",
+        mob_lbl_type: "Type of Mobility (Academic Semester / Internship / Double Degree):",
+        mob_lbl_rolemodel: "Link with Corresponding Role Model:",
+
+        // 4. Sustainability & Civic
+        sust_title: "Sustainability & Civic Engagement",
+        sust_subtitle: "Acting locally for the environment and serving the public interest.",
+        sust_cw_title: "Environmental Action – Clean Walk",
+        sust_cw_text: "I took part in a collective Clean Walk to collect litter and reduce local pollution in public spaces. This hands-on initiative raised awareness among participants and passersby about waste management and everyday environmental responsibility. As an MF2E student, connecting my environmental studies with concrete field action is essential to me.",
+        sust_cw_todo: "To complete / À compléter: Date, exact location, organizing group, and number of participants.",
+        sust_mairie_title: "Civic Engagement – Working at a Local Town Hall (Mairie)",
+        sust_mairie_text: "Working for a municipal administration allowed me to contribute directly to daily public service and local community life. This experience gave me a concrete understanding of how local institutions operate, how collective infrastructure is maintained, and why reliability and clear communication matter when serving citizens.",
+        sust_mairie_todo: "To complete / À compléter: Municipality name, department, period, and main civic duties.",
+
+        // 5. Sport & Activities
+        sport_title: "Sport & Other Activities",
+        sport_subtitle: "Building team spirit, discipline, and cultural curiosity outside the classroom.",
+        sport_volley_title: "Volleyball",
+        sport_volley_desc: "A fast-paced sport where no player can win alone: every point relies on instant communication, trust between teammates, and quick collective adaptation.",
+        sport_volley_todo: "Level & Club (e.g., ENSEEIHT team / local club): To complete / À compléter",
+        sport_foot_title: "Football",
+        sport_foot_desc: "Practicing football taught me endurance, tactical discipline, and how to combine individual effort with a shared collective strategy under pressure.",
+        sport_foot_todo: "Level & Club: To complete / À compléter",
+        sport_cinema_title: "Cinema",
+        sport_cinema_desc: "Beyond sports, I have a strong interest in cinema, which feeds my curiosity for storytelling, visual aesthetics, and diverse cultural perspectives.",
+        sport_cinema_todo: "Favorite genres / directors or student club involvement: To complete / À compléter",
+        sport_transfer_title: "Transferable Skills for Engineering",
+        sport_transfer_
